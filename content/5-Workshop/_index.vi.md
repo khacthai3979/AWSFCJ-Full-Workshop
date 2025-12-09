@@ -7,87 +7,90 @@ pre: " <b> 5. </b> "
 ---
 # IMPLEMENTING ADVANCED FEATURES OF AWS APPLICATION LOAD BALANCER
 
-### Overall
-This hands-on lab provides a comprehensive, practical guide to implementing and managing the advanced capabilities of the AWS Application Load Balancer (ALB). Participants will move beyond basic load balancing to configure a highly available, performant, and intelligent application delivery solution. By working through real-world scenarios, you will learn to leverage features that are critical for modern, scalable, and resilient applications, including complex routing, protocol support, and operational best practices.
+### Introduction
 
-![ConnectPrivate](/images/arc.jpeg) 
-### Workflow### Phase 1: Foundational Networking (VPC)
-This phase established the isolated network environment for the application.
+Trong bối cảnh AI/ML trở nên phổ biến, người dùng và doanh nghiệp ngày càng quan tâm đến vấn đề bảo mật dữ liệu cá nhân. Với các ứng dụng Computer Vision (CV), một trong những phương pháp bảo vệ thông tin hiệu quả nhất là làm mờ khuôn mặt trong ảnh và video.
 
-*   **Create VPC:** A VPC was created with the CIDR block `10.0.0.0/16`.
+Quy trình này gồm hai bước chính:
+1. Nhận diện khuôn mặt trong từng khung hình bằng ML/Deep Learning.
+2. Che mờ vùng khuôn mặt bằng xử lý ảnh.
 
-*   **Create Subnets:** Four subnets were created across two Availability Zones for high availability:
-    *   `public-subnet-1a` (`10.0.1.0/24`)
-    *   `public-subnet-1b` (`10.0.2.0/24`)
-    *   `private-subnet-1a` (`10.0.3.0/24`)
-    *   `private-subnet-1b` (`10.0.4.0/24`)
+Trong workshop này, chúng ta xây dựng ứng dụng serverless tự động phát hiện và làm mờ khuôn mặt trong video, sử dụng:
 
-*   **Configure Gateways:** An Internet Gateway was attached to the VPC for public internet access, and a NAT Gateway was placed in a public subnet to allow private instances to access the internet.
+- Amazon Rekognition Video để nhận diện khuôn mặt.
 
-*   **Set Up Route Tables:** A public route table was configured to direct traffic through the Internet Gateway, and a private route table was set up to route outbound traffic from private subnets through the NAT Gateway.
+- AWS Step Functions để điều phối workflow.
 
-### Phase 2: Security & Configuration
-This phase focused on securing the environment and preparing for deployments.
+- AWS Lambda (Container Image) và OpenCV để xử lý video.
 
-*   **Create Security Groups:** Layered security groups were created to control traffic flow:
-    *   `alb-sg`: Allows public HTTP (80) and HTTPS (443) traffic.
-    *   `web-sg`: Allows traffic only from `alb-sg` on port 80.
-    *   `api-sg`: Allows traffic only from `alb-sg` on port 8080.
-    *   `websocket-sg`: Allows traffic only from `alb-sg` on port 3000.
+Giải pháp phù hợp cho các hệ thống cần đảm bảo quyền riêng tư, tuân thủ quy định bảo mật dữ liệu hoặc xử lý video quy mô lớn.
 
-*   **Request SSL Certificate:** An SSL certificate for the domain was requested and validated using AWS Certificate Manager (ACM) to enable HTTPS.
+![ConnectPrivate](/images/Image_workshop/blur_face_stepfunc.drawio.png) 
 
-*   **Create IAM Role:** An IAM role (`ec2-alb-role`) was created for EC2 instances, granting them permissions to interact with CloudWatch, S3, and SNS without storing credentials.
+## Solution Overview
 
-*   **Create S3 Bucket:** An S3 bucket was created to store the ALB's access logs for auditing and analysis.
+Kiến trúc tổng thể của hệ thống sử dụng **100% serverless**, đảm bảo:
 
-### Phase 3: Application & Compute Layer
-This phase deployed the application's core components.
+- **Không cần quản lý máy chủ**
+- **Tự động scale theo nhu cầu**
+- **Tích hợp API ML có sẵn từ Amazon Rekognition**
+- **Không yêu cầu kiến thức Deep Learning chuyên sâu**
 
-*   **Create Target Groups:** Three distinct target groups were created to route traffic to the different microservices, each with a specific health check path:
-    *   `web-tg` (Port 80, `/`)
-    *   `api-tg` (Port 8080, `/api/health`)
-    *   `websocket-tg` (Port 3000, `/ws/health`)
+---
 
-*   **Create Application Load Balancer (ALB):** An internet-facing ALB was created in the public subnets, configured with the `alb-sg` security group and the ACM certificate. Listeners were set up to redirect HTTP to HTTPS and to handle content-based routing.
+## Luồng xử lý chính
 
-*   **Enable Advanced ALB Features:**
-    *   **Sticky Sessions:** Enabled on `web-tg` for session affinity.
-    *   **Access Logs:** Configured to send logs to the S3 bucket.
+1. **Upload Video**
+   - Người dùng tải video lên Amazon S3.
 
-*   **Create Launch Templates:** Three separate launch templates were created, each with a specific user data script to bootstrap the application:
-    *   `web-service-template` (NGINX)
-    *   `api-service-template` (Node.js/Express)
-    *   `websocket-service-template` (Node.js/WebSocket)
+2. **S3 Event Trigger**
+   - S3 phát sinh sự kiện `ObjectCreated`, kích hoạt Lambda **Start Face Detection**.
 
-*   **Create Auto Scaling Groups:** Three Auto Scaling Groups were launched in the private subnets, each linked to its corresponding Launch Template and Target Group, configured to maintain a desired count of 2 instances and scale based on CPU utilization.
+3. **Face Detection Job**
+   - Lambda gọi API **Amazon Rekognition Video** để phân tích khuôn mặt (asynchronous job).
 
-### Phase 4: Monitoring, DNS & Cost Management
-This final phase made the application observable, publicly accessible, and financially monitored.
+4. **Start Workflow**
+   - Lambda khởi chạy **AWS Step Functions State Machine**, truyền vào:
+     - S3 Object Key  
+     - Video Metadata  
+     - Rekognition Job ID  
 
-*   **Configure Monitoring:**
-    *   An SNS Topic (`alb-alerts`) was created for notifications.
-    *   CloudWatch Alarms were set for key metrics like `RequestCountPerTarget` and `CPUUtilization` to send alerts to the SNS topic.
-    *   A CloudWatch Dashboard was built to visualize the health of the ALB, Target Groups, and EC2 instances in real-time.
+---
 
-*   **Configure DNS:** Amazon Route 53 was used to create an A (Alias) record pointing the root domain to the ALB, CNAME record pointing to subdomain, making the application accessible via a friendly URL.
+## Step Functions Workflow
 
-*   **Set Up Cost Monitoring:** AWS Cost Explorer was enabled, and an AWS Budget was created to monitor monthly spending and send alerts if costs approach the defined limit.
+### 1. Wait for Completion
+- Step Functions gọi Lambda **Wait For Completion** để chờ Amazon Rekognition xử lý.
+
+### 2. Retrieve Detection Results
+- Sau khi job hoàn tất, Step Functions gọi Lambda để lấy kết quả:
+  - **Bounding Boxes**
+  - **Timestamps**
+
+### 3. Video Blurring
+- Lambda cuối cùng sử dụng OpenCV để làm mờ khuôn mặt:
+  - Fetch Docker image hỗ trợ OpenCV từ **Amazon ECR**
+  - Đọc file video từ **S3**
+  - Làm mờ khuôn mặt theo `timestamp` và `bounding box`
+  - Xuất video đã xử lý lên **Output S3 Bucket**
+  - Xóa file tạm trong môi trường Lambda
+
+---
+
+## Output
+- Video đã làm mờ khuôn mặt được lưu trữ trong một **S3 bucket đầu ra**, sẵn sàng chia sẻ cho hệ thống phía sau hoặc người dùng cuối.
+
 
 ### Content
- 1. [Introduction ](1-Introduce)
- 2. [Preparation](2-Preparation/)
- 3. [Network Infrastructure](3-VPCSetup)
- 4. [Request SSL Certificate](4-ACM)
- 5. [Initalize S3 Bucket](5-S3Bucket)
- 6. [Create Target Groups](6-TargetGroup)
- 7. [Initalize Application Load Balancer](7-ALB)
- 8. [Initalize EC2 Launch Template](8-EC2LaunchTemplates)
- 9. [ Initalize Auto Scaling Group](9-ASG)
- 10. [Create SNS topic](10-SNS)
- 11. [Initialize CloudWatch Alarms](11-CW)
- 12. [ Initialize Cost Monitoring](12-Cost)
- 13. [Config DNS records](13-ConfigDNS)
- 14. [Check result](14-CheckResult)
- 15. [ Performance Testing](15-PerformanceTesting)
- 16. [ Clean Resources](16-CleanResources)
+
+1. [Introduction](1-Introduce)
+2. [Initalize S3 Bucket](2-S3)
+3. [Create IAM Roles & Permissions](3-IAM)
+4. [Build Lambda Functions](4-Lambda)
+5. [Setup AWS Step Functions](5-StepFunction)
+6. [Configure S3 Event Trigger](6-S3EventTrigger)
+7. [Testing Workflow](7-Test)
+8. [Build ECR Image for OpenCV](8-ECR)
+9. [Final Result](9-FinalResult)
+10. [Clean Resources](10-CleanResources)
+

@@ -22,7 +22,6 @@ pre : " <b> 5.2 </b> "
      - **Encryption:** Enable (Server-side encryption with Amazon S3 managed keys)
 
 4. Click **"Create bucket"**
-![image]()
 
 ### 1.2 Create Output Bucket
 
