@@ -1,9 +1,9 @@
 ---
 title : "Test hệ thống"
 date : "2025-10-10"
-weight : 2
+weight : 7
 chapter : false
-pre : " <b> 7. </b> "
+pre : " <b> 5.7 </b> "
 ---
 
 
@@ -28,6 +28,7 @@ pre : " <b> 7. </b> "
 4. Click **"Add files"**
 5. Chọn video test
 6. Click **"Upload"**
+![image](static/images/Image_workshop/StepFunc/s3-upload.png)
 
 ### 6.3 Theo dõi Execution
 
@@ -63,6 +64,8 @@ pre : " <b> 7. </b> "
    3. **BlurFacesOnVideo**
    4. **ExecutionSucceeded**
 
+![image](/images/Image_workshop/StepFunc/check-step-run.png)
+
    **Thời gian ước tính:**
    - Video 30 giây: 2-5 phút
    - Video 2 phút: 5-10 phút
@@ -74,3 +77,5 @@ pre : " <b> 7. </b> "
    3. Tìm file video (cùng tên với input)
    4. Click **"Download"**
    5. Xem video đã được xử lý
+
+

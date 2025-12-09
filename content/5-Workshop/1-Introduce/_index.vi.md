@@ -1,9 +1,9 @@
 ---
 title : "Giới thiệu "
 date : "2025-10-10"
-weight : 2
+weight : 1
 chapter : false
-pre : " <b> 1. </b> "
+pre : " <b> 5.1 </b> "
 ---
 Trong workshop này, chúng ta sẽ xây dựng một dự án tự động làm mờ khuôn mặt trong video bằng cách kết hợp Amazon Rekognition và OpenCV. Đây là một ứng dụng thực tế trong lĩnh vực Computer Vision, đặc biệt quan trọng khi các doanh nghiệp ngày càng chú trọng đến bảo vệ quyền riêng tư của người dùng.
 
@@ -22,3 +22,18 @@ Sau khi hoàn thành workshop này, người học sẽ:
 - Thực hành triển khai một giải pháp AI/ML trên AWS.
 - Hiểu tầm quan trọng của ẩn danh dữ liệu hình ảnh và bảo vệ quyền riêng tư.
 
+### Tài liệu Tham khảo
+
+**AWS Documentation:**
+- [Lambda Container Images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html)
+- [Amazon ECR User Guide](https://docs.aws.amazon.com/ecr/)
+- [Rekognition Video Analysis](https://docs.aws.amazon.com/rekognition/latest/dg/video.html)
+
+**Libraries:**
+- [OpenCV Documentation](https://docs.opencv.org/)
+- [MoviePy Documentation](https://zulko.github.io/moviepy/)
+- [Boto3 Documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
+
+**Tools:**
+- [Docker Documentation](https://docs.docker.com/)
+- [AWS CLI Reference](https://docs.aws.amazon.com/cli/)

@@ -1,9 +1,9 @@
 ---
 title : "Thêm OpenCV cho Lambda 4 - Sử dụng Container Image"
 date : "2025-10-10"
-weight : 2
+weight : 8
 chapter : false
-pre : " <b> 8. </b> "
+pre : " <b> 5.8 </b> "
 ---
 
 Ở phần trước, Lambda 4 chỉ copy video từ input sang output mà không blur. Bây giờ chúng ta sẽ deploy Lambda function với Docker container để **thực sự blur faces** trong video bằng OpenCV và MoviePy.
@@ -27,10 +27,12 @@ pre : " <b> 8. </b> "
 
 ### 1.1 Tạo Thư mục Project
 
+Tạo một thư mục mới trong project
+
 **Windows:**
 ```powershell
-mkdir C:\AWS\lambda-blur-docker
-cd C:\AWS\lambda-blur-docker
+mkdir lambda-blur-docker
+cd lambda-blur-docker
 ```
 
 
@@ -52,13 +54,6 @@ COPY app.py .
 CMD ["app.lambda_function"]
 ```
 
-**Giải thích:**
-- `FROM`: Base image từ AWS Lambda Python 3.8
-- `RUN yum install`: Cài OpenGL library cho OpenCV
-- `COPY requirements.txt`: Copy file dependencies
-- `RUN pip install`: Cài các Python packages
-- `COPY app.py`: Copy code xử lý
-- `CMD`: Entry point khi Lambda chạy
 
 ### 1.3 Tạo File: requirements.txt
 
@@ -74,12 +69,6 @@ imageio==2.9.0
 imageio-ffmpeg==0.4.4
 ```
 
-**Giải thích:**
-- `boto3`: AWS SDK để tương tác với S3
-- `opencv-python-headless`: Xử lý video và blur faces (không cần GUI)
-- `numpy`: Tính toán array cho OpenCV
-- `moviepy`: Xử lý audio và video
-- `imageio`: Đọc/ghi video files
 
 ### 1.4 Tạo File: video_processor.py
 
@@ -399,7 +388,7 @@ Docker version 24.0.x, build xxxxx
 
 **Windows PowerShell:**
 ```powershell
-cd C:\AWS\lambda-blur-docker
+cd C:/AWS/lambda-blur-docker
 docker build --platform linux/amd64 -t blur-faces-lambda .
 ```
 
@@ -536,9 +525,9 @@ The image manifest, config or layer media type is not supported
 3. Tab **Images**
 4. Bạn sẽ thấy:
    - **Image tag:** latest
-   - **Image size:** ~1.2 GB
+   - **Image size:** ~2 GB
    - **Pushed at:** Thời gian vừa push
-   - **Image URI:** `208613876063.dkr.ecr.ap-southeast-1.amazonaws.com/blur-faces-lambda:latest`
+   - **Image URI:** VD:  `123456789.dkr.ecr.ap-southeast-1.amazonaws.com/blur-faces-lambda:latest`
 
 5. **Copy Image URI** - bạn sẽ cần nó ở bước tiếp theo!
 
@@ -577,9 +566,13 @@ The image manifest, config or layer media type is not supported
 **Architecture:**
 - x86_64 (đã được set tự động)
 
+![image](/images/Image_workshop/StepFunc/lambda4-new.png)
+
 **Permissions:**
 - **Execution role:** Use an existing role
 - Select: `LambdaBlurFacesRole` (đã tạo ở Bước 2.4)
+
+![iamge](/images/Image_workshop/StepFunc/lambda4-role.png)
 
 Click **Create function**
 
@@ -599,14 +592,16 @@ Click **Create function**
 1. Tab **Configuration** → **General configuration** → **Edit**
 
 **Settings:**
-- **Memory:** 3008 MB (maximum cho Lambda)
+- **Memory:** 3000 MB (maximum cho Lambda)
 - **Timeout:** 15 minutes (900 seconds)
 - **Ephemeral storage:** 1024 MB (tăng từ 512 MB default)
 
-2. Click **Save**
+![image](/images/Image_workshop/StepFunc/lambda4-cofig.png)
+
+1. Click **Save**
 
 **Giải thích:**
-- **Memory 3008 MB:** Xử lý video HD cần nhiều RAM
+- **Memory 3000 MB:** Xử lý video HD cần nhiều RAM
 - **Timeout 900s:** Video 2-3 phút cần ~5-10 phút để xử lý
 - **Storage 1024 MB:** Lưu video input + output tạm trong /tmp
 
@@ -618,7 +613,8 @@ Click **Create function**
 **Variable:**
 - **Key:** `OUTPUT_BUCKET`
 - **Value:** `face-blur-output-bucket-****` (thay bằng tên output bucket của bạn)
+![image](/images/Image_workshop/StepFunc/lambda4-enviro.png)
 
 3. Click **Save**
 
-**✅ Checkpoint:** Lambda function với Docker container đã được tạo và cấu hình!
+**Checkpoint:** Lambda function với Docker container đã được tạo và cấu hình!

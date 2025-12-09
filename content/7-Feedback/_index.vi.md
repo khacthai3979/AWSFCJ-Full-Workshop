@@ -48,7 +48,7 @@ Em được học và thực hành về:
 - AWS core services (VPC, EC2, IAM, RDS, S3, CloudFront)  
 - IaC với Terraform và AWS CDK  
 - CI/CD pipeline (CodeCommit, CodeBuild, CodeDeploy, CodePipeline)  
-- Docker và triển khai container với ECS/EKS  
+- Docker và triển khai container với ECS/EKS/ECR  
 - Quan sát hệ thống bằng CloudWatch và X-Ray  
 
 Điều em thích là không chỉ “biết dùng” mà còn hiểu được **tại sao phải làm như vậy**, vì Mentor liên tục giải thích về trade-off và kiến trúc thực tế.

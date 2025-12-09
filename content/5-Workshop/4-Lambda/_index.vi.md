@@ -1,10 +1,11 @@
 ---
-title : "Tạo Lambda Functions"
+title : "Khởi tạo Lambda Functions"
 date : "2025-10-10"
-weight : 2
+weight : 4
 chapter : false
-pre : " <b> 4. </b> "
+pre : " <b> 5.4. </b> "
 ---
+
 
 ### 3.1 Tạo Lambda 1: Start Face Detect
 

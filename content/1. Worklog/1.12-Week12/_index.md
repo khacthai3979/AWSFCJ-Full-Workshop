@@ -1,6 +1,6 @@
----
+﻿---
 title: "WEEK 12 WORKLOG"
-date: "2025-11-10"
+date: "2025-11-24"
 weight: 12
 chapter: false
 pre: " <b> 1.12 </b> "
@@ -10,30 +10,46 @@ pre: " <b> 1.12 </b> "
 
 ### **Week 12 Objectives**
 
-* Finalize and optimize the **AWS Application Load Balancer (ALB)** configuration.
-* Learn and successfully configure advanced ALB features: **HTTP/2**, **WebSocket**, and **Sticky Sessions**.
-* Conduct **Performance Testing** on the ALB to evaluate its load-handling capabilities.
-* Complete the final workshop and prepare the final internship report.
+* Comprehensive application testing.
+* Optimize performance and stability.
+* Write project report and summary.
 
 ---
 
 ### **Tasks to be carried out this week**
 
-| Day | Task | Start Date | Completion Date | Reference/Material |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 (Mon) | **Configure HTTP/2**: Set up the ALB Listener (HTTPS) to support **HTTP/2**. Conduct initial research on **WebSocket**. | 24/11/2025 | 24/11/2025 | |
-| 2 (Tue) | **Configure WebSocket**: Configure the ALB Listener to support **WebSocket** and test the connection. Optimize timeout settings. | 25/11/2025 | 25/11/2025 | |
-| 3 (Wed) | **Configure Sticky Sessions (Part 1)**: Configure **Sticky Sessions** (Target Group Attributes) to maintain user sessions. Run **Health Checks**. | 26/11/2025 | 26/11/2025 | |
-| 4 (Thu) | **Configure Sticky Sessions (Part 2)**: (Repeated) Verify and confirm that the Sticky Sessions feature is working correctly. | 27/11/2025 | 27/11/2025 | |
-| 5 (Fri) | **Performance Testing**: Use a tool (JMeter/Gatling) to load test the ALB. Analyze the results and prepare the final report. | 28/11/2025 | 28/11/2025 | |
+| Day | Task | Start Date | Completion Date |
+| :--- | :--- | :--- | :--- |
+| 1 (Monday) | Integration testing for auth flow | 24/11/2025 | 24/11/2025 |
+| 2 (Tuesday) | End-to-end testing chat | 25/11/2025 | 25/11/2025 |
+| 3 (Wednesday) | Load testing and stress testing | 26/11/2025 | 26/11/2025 |
+| 4 (Thursday) | Cross-browser testing | 27/11/2025 | 27/11/2025 |
+| 5 (Friday) | Write project report | 28/11/2025 | 28/11/2025 |
+| 6 (Saturday) | Write project report | 29/11/2025 | 29/11/2025 |
 
 ---
 
 ### **Week 12 Achievements**
 
-* Successfully configured an **Application Load Balancer (ALB)** to support the **HTTP/2** protocol (via an HTTPS listener).
-* Successfully configured the ALB to support **WebSocket** connections for real-time communication and troubleshot `idle timeout` issues.
-* Configured and verified **Sticky Sessions** (Application-based cookie) on the Target Group, ensuring requests from a single client are routed to the same instance.
-* Successfully ran **Health Checks** to ensure all instances in the Target Group were healthy and ready to receive traffic.
-* Conducted **Performance Testing** against the ALB using load-generation tools (like JMeter/Gatling) to analyze key metrics (response time, error rate).
-* Completed the final workshop and prepared the final summary report for the 12-week internship.
+#### 1. Complete testing
+
+* Integration and E2E testing meet requirements
+* Performance evaluation achieves <3s response time goal
+
+#### 2. Ensure UI/UX quality
+
+* 100% responsive on mobile
+* Compatible with 4 major browsers
+
+#### 3. Complete project report
+
+* Project summary according to sections:
+  * Architecture
+  * AI Integration
+  * Deployment Pipeline
+  * Testing & Performance
+
+---
+
+Week 12 completed all project objectives and report was finalized on schedule.
+

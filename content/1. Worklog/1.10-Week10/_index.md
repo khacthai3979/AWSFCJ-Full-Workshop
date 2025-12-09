@@ -1,6 +1,6 @@
----
+﻿---
 title: "WEEK 10 WORKLOG"
-date: "2025-11-10"
+date: "2025-12-09"
 weight: 10
 chapter: false
 pre: " <b> 1.10 </b> "
@@ -10,33 +10,44 @@ pre: " <b> 1.10 </b> "
 
 ### **Week 10 Objectives**
 
-* Learn about container orchestration with **Kubernetes (K8s)**.
-* Master core Kubernetes concepts (Cluster, Node, Pod) and how to write YAML configuration files.
-* Practice deploying an application (Node.js) to a Kubernetes cluster (using Minikube).
-* Learn about container monitoring tools (Prometheus, Grafana, cAdvisor).
-* Learn about Kubernetes backup and disaster recovery solutions using **Velero**.
-* Review documentation and prepare for the final CI/CD presentation.
+* Deploy AWS infrastructure using Terraform.
+* Deploy frontend and backend to AWS.
+* Set up auto-scaling, logging and CDN.
+* Test end-to-end authentication.
 
 ---
 
 ### **Tasks to be carried out this week**
 
-| Day | Task | Start Date | Completion Date | Reference/Material |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 (Mon) | **Learn Kubernetes**: Study K8s architecture (Pod, Node, Cluster). Write a `deployment.yaml` file and deploy an app (`kubectl apply`) on Minikube. | 10/11/2025 | 10/11/2025 | |
-| 2 (Tue) | **Learn Monitoring & CI/CD Report**: (Repeated) Review CI/CD docs. Research monitoring tools (Prometheus, Grafana). | 11/11/2025 | 11/11/2025 | |
-| 3 (Wed) | **Learn Monitoring & CI/CD Report**: (Repeated) Review CI/CD docs. Research monitoring tools (Prometheus, Grafana). | 12/11/2025 | 12/11/2025 | |
-| 4 (Thu) | **Learn Monitoring & CI/CD Report**: (Repeated) Review CI/CD docs. Research monitoring tools (Prometheus, Grafana). | 13/11/2025 | 13/11/2025 | |
-| 5 (Fri) | **Learn Backup (Velero)**: Install and configure **Velero** (using Helm). Practice backup (`velero backup create`) and restore (`velero restore create`). | 14/11/2025 | 14/11/2025 | |
+| Day | Task | Start Date | Completion Date |
+| :--- | :--- | :--- | :--- |
+| 1 (Monday) | Write Terraform for VPC, subnets, security groups | 10/11/2025 | 10/11/2025 |
+| 2 (Tuesday) | Deploy frontend to S3 and CloudFront | 11/11/2025 | 11/11/2025 |
+| 3 (Wednesday) | Containerize Django backend with Docker | 12/11/2025 | 12/11/2025 |
+| 4 (Thursday) | Setup ECS Fargate, API Gateway, ALB | 13/11/2025 | 13/11/2025 |
+| 5 (Friday) | Configure VPC Endpoints, CORS | 14/11/2025 | 14/11/2025 |
+| 6 (Saturday) | Set up CloudWatch Logs & test E2E | 15/11/2025 | 15/11/2025 |
 
 ---
 
 ### **Week 10 Achievements**
 
-* Mastered the basic concepts of **Kubernetes (K8s)**, including **Cluster**, **Node**, and **Pod**.
-* Successfully wrote a `deployment.yaml` configuration file and deployed a Node.js application to a Minikube cluster using `kubectl apply`.
-* Troubleshot and resolved issues with setting up a local Kubernetes environment (used Minikube to solve resource constraints).
-* Researched popular monitoring and visualization tools in the container ecosystem, including **Prometheus**, **Grafana**, and **cAdvisor**.
-* Mastered the concept of Disaster Recovery (DR) in Kubernetes.
-* Successfully installed and used **Velero** to perform backups (`backup`) and restores (`restore`) of cluster resources.
-* Completed the review and preparation of materials for the final CI/CD presentation.
+#### 1. Complete AWS infrastructure deployment
+
+* VPC, Subnets, Security Groups provisioned using Terraform
+* Set up AWS Cognito and App Client
+
+#### 2. Deploy production application
+
+* Frontend deployed on S3 + CloudFront CDN
+* Backend running on ECS Fargate with Auto-scaling
+
+#### 3. Set up Logging & Monitoring
+
+* CloudWatch Logs for all services
+* Successfully test end-to-end authentication flow
+
+---
+
+Week 10 completed the objective of bringing the application to production-ready cloud environment.
+

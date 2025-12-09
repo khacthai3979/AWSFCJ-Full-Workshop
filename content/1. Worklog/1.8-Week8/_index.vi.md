@@ -1,7 +1,7 @@
 ---
 title: "WEEK 8 WORKLOG"
-date: "2025-11-10"
-weight: 1
+date: "2025-12-29"
+weight: 8
 chapter: false
 pre: " <b> 1.8 </b> "
 ---
@@ -10,12 +10,12 @@ pre: " <b> 1.8 </b> "
 
 ### **Week 8 Objectives**
 
-* Thực hành và hoàn thiện kỹ năng sử dụng **Terraform** (IaC).
-* Nắm vững cách sử dụng **biến (variables)** và file `.tfvars` trong Terraform để quản lý cấu hình một cách linh hoạt.
-* Tìm hiểu và xây dựng một quy trình **CI/CD (Continuous Integration/Continuous Delivery)** hoàn chỉnh trên AWS.
-* Cấu hình **AWS CodePipeline** để tự động hóa các bước build, test, và deploy.
-* Tìm hiểu và thực hành triển khai ứng dụng tự động lên EC2 bằng **AWS CodeDeploy**.
-* Tích hợp các bước kiểm tra tự động (automated testing) vào pipeline.
+* Nghiên cứu và xây dựng thiết kế kiến trúc hệ thống cho dự án.
+* Tham khảo ý kiến từ mentor và điều chỉnh bản thiết kế kiến trúc.
+* Xây dựng bản dự thảo kế hoạch triển khai dự án (project plan & timeline).
+* Tìm hiểu Terraform để triển khai hạ tầng dưới dạng mã nguồn (Infrastructure as Code).
+* Tìm hiểu Docker và containerization để đóng gói ứng dụng.
+* Thực hành triển khai ứng dụng lên Amazon Elastic Container Service (Amazon ECS).
 
 ---
 
@@ -23,20 +23,70 @@ pre: " <b> 1.8 </b> "
 
 | Day | Task | Start Date | Completion Date | Reference/Material |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 (Thứ Hai) | **Terraform Apply & Variables**: Chạy `terraform apply` để tạo S3 bucket. Refactor code, thêm `variable` và file `.tfvars` để quản lý tên bucket. | 27/10/2025 | 27/10/2025 | |
-| 2 (Thứ Ba) | **Terraform Practice**: (Tiếp tục thực hành và củng cố kiến thức về Terraform variables và `.tfvars` từ ngày hôm trước). | 28/10/2025 | 28/10/2025 | |
-| 3 (Thứ Tư) | **Tìm hiểu CI/CD & CodePipeline**: Cấu hình pipeline CI/CD cơ bản (từ CodeCommit đến S3) bằng **AWS CodePipeline**. Bắt đầu tìm hiểu về **AWS CodeDeploy**. | 29/10/2025 | 29/10/2025 | |
-| 4 (Thứ Năm) | **Tích hợp Testing vào Pipeline**: Tìm hiểu và cấu hình các bước kiểm tra tự động (automated testing, vd: unit tests) vào CodePipeline (sử dụng AWS CodeBuild). | 30/10/2025 | 30/10/2025 | |
-| 5 (Thứ Sáu) | **Thực hành CodeDeploy**: Thực hành triển khai một ứng dụng mẫu (từ CodeCommit) lên EC2 instance bằng **AWS CodeDeploy**, xử lý lỗi tập lệnh (script). | 31/10/2025 | 31/10/2025 | |
+| 1 (Thứ Hai) | **Nghiên cứu & lập kế hoạch kiến trúc**: Xác định kiến trúc tổng thể, lựa chọn dịch vụ AWS phù hợp cho dự án | 27/10/2025 | 27/10/2025 | AWS Architecture Docs |
+| 2 (Thứ Ba) | **Tham khảo ý kiến và chỉnh sửa bản thiết kế kiến trúc**: Thảo luận cùng mentor, tiếp thu góp ý và điều chỉnh bản thiết kế | 28/10/2025 | 28/10/2025 | Mentor |
+| 3 (Thứ Tư) | **Dự thảo project plan & timeline**: Xây dựng timeline triển khai dự án theo từng phase và phân bổ thời gian thực hiện | 29/10/2025 | 29/10/2025 | Project Notes |
+| 4 (Thứ Năm) | **Tìm hiểu Terraform & triển khai ứng dụng với Docker**: Học khái niệm IaC, tạo terraform module đơn giản, tạo Dockerfile & build image | 30/10/2025 | 30/10/2025 | Terraform Docs |
+| 5 (Thứ Sáu) | **Triển khai ứng dụng lên Amazon ECS**: Tạo ECS Cluster, Task Definition, Service, kiểm tra chạy container trên ECS | 31/10/2025 | 31/10/2025 | AWS ECS Docs |
 
 ---
 
 ### **Week 8 Achievements**
 
-* Thực thi thành công `terraform apply` để tự động tạo tài nguyên (S3 Bucket) trên AWS.
-* Nắm vững cách tham số hóa cấu hình Terraform bằng cách sử dụng **biến (variables)** (khai báo trong `.tf`) và quản lý giá trị biến tập trung qua file **`.tfvars`**.
-* Hiểu rõ khái niệm và lợi ích của quy trình CI/CD (Continuous Integration/Continuous Delivery).
-* Xây dựng thành công một pipeline CI/CD cơ bản bằng **AWS CodePipeline**, tự động hóa quy trình từ source (CodeCommit) đến deploy.
-* Tích hợp thành công bước kiểm tra tự động (automated testing) vào pipeline (sử dụng **AWS CodeBuild**).
-* Nắm vững và thực hành thành công cách triển khai ứng dụng tự động lên EC2 bằng **AWS CodeDeploy**, bao gồm cả việc gỡ lỗi các tập lệnh (deployment scripts).
-* Kết thúc 8 tuần thực tập với kiến thức vững chắc về cả hạ tầng AWS (VPC, EC2, S3, IAM, WAF, v.v.), Infrastructure as Code (CloudFormation, Terraform), và quy trình DevOps (CI/CD với CodePipeline).
+Tuần thứ tám đánh dấu giai đoạn quan trọng của dự án, chuyển từ nghiên cứu sang thiết kế kiến trúc và chuẩn bị triển khai thực tế. Kết quả đạt được bao gồm:
+
+#### 1. Hoàn thiện thiết kế kiến trúc hệ thống
+- Xác định kiến trúc phù hợp với dự án:
+  - AWS VPC
+  - Amazon ECS (Fargate)
+  - Amazon RDS
+  - Amazon Cognito
+  - AWS Bedrock
+  - CloudFront + S3
+  - CloudWatch Logs & Metrics
+- Thiết kế kiến trúc theo hướng **cloud-native, bảo mật và dễ mở rộng**
+- Lựa chọn dịch vụ phù hợp với mục tiêu dự án và ngân sách hiện tại
+
+#### 2. Tham khảo ý kiến mentor & điều chỉnh thiết kế
+- Trình bày bản thiết kế kiến trúc sơ bộ
+- Nhận góp ý về:
+  - Best practices on AWS
+  - Security layers
+  - Networking (VPC Endpoints, ALB, Security Groups)
+  - Cost optimization
+- Chỉnh sửa lại kiến trúc dựa theo feedback
+
+#### 3. Dự thảo project plan & timeline
+- Xác định các phase chính:
+  - Research
+  - Architecture Design
+  - Frontend/Backend Development
+- Xây dựng timeline tuần theo milestones
+- Định nghĩa deliverables theo từng phase
+- Lên kế hoạch test, deploy & optimization
+
+#### 4. Tìm hiểu Terraform & Docker
+- Hiểu rõ khái niệm IaC và lợi ích:
+  - Reproducible infrastructure
+  - Version control
+  - Automation
+- Viết terraform module đơn giản:
+  - VPC
+  - Subnet
+  - Security Group
+- Học Docker:
+  - Tạo Dockerfile
+  - Build image & chạy container
+  - Hiểu khái niệm Layer, Registry
+
+#### 5. Triển khai ứng dụng lên ECS
+- Tạo ECS Cluster (Fargate)
+- Tạo Task Definition & cấu hình container
+- Deploy ứng dụng Flask hoặc Node.js demo
+- Kiểm tra Container Logs trên CloudWatch
+- Hiểu cơ chế chạy **serverless containers**
+
+---
+
+**Tổng kết:**  
+Tuần thứ tám là giai đoạn chuyển từ nghiên cứu sang **thiết kế kiến trúc và triển khai thử nghiệm**, bao gồm việc tạo project plan, hoàn thiện bản kiến trúc, và thực hành với các công nghệ triển khai thực tế như Terraform, Docker và Amazon ECS. Đây là bước nền tảng quan trọng để bước sang giai đoạn phát triển ứng dụng và triển khai hạ tầng hoàn chỉnh trong các tuần tiếp theo.

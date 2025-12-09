@@ -1,11 +1,10 @@
 ---
-title : "Tạo S3 Bucket "
+title : "Khởi tạo S3 Bucket "
 date : "2025-10-10"
 weight : 2
 chapter : false
-pre : " <b> 2. </b> "
+pre : " <b> 5.2 </b> "
 ---
-
 
 ### 1.1 Tạo Input Bucket
 

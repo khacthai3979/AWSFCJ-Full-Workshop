@@ -1,18 +1,18 @@
 ---
 title : "Tạo Step Functions State Machine"
 date : "2025-10-10"
-weight : 2
+weight : 5
 chapter : false
-pre : " <b> 5. </b> "
+pre : " <b> 5.5 </b> "
 ---
 
-## 4. Tạ
+
 ### 4.1 Tạo State Machine
 
 1. Tìm kiếm "Step Functions" trong Console
 2. Click **"Create state machine"**
 
-**Choose authoring method:**
+**Chọn authoring method:**
 - Select: **"Write your workflow in code"**
 - **Type:** Standard
 - Click **"Next"**
@@ -114,11 +114,12 @@ pre : " <b> 5. </b> "
 3. Copy ARN ở góc trên bên phải
 4. Thay thế `REGION` và `ACCOUNT_ID` trong JSON
 
-**Ví dụ ARN:**
 ```
 arn:aws:lambda:us-east-1:123456789012:function:CheckStatusFunction
 ```
 
+**:**
+![imagestate](/images/Image_workshop/StepFunc/4-config.png)
 
 ### 4.3 Configure State Machine
 
@@ -126,11 +127,14 @@ arn:aws:lambda:us-east-1:123456789012:function:CheckStatusFunction
 - **Name:** `FaceBlurStateMachine`
 - **Permissions:** Choose an existing role
   - Select: `StepFunctionsExecutionRole`
+![image](/images/Image_workshop/StepFunc/6-config-2.png)
 - **Logging:** (Optional) Enable logging
   - **Log level:** ALL
   - **Include execution data:** Checked
 
 Click **"Create state machine"**    
+
+
 
 ### 4.4 Lưu State Machine ARN
 
@@ -145,5 +149,7 @@ Click **"Create state machine"**
 4. Update biến `STATE_MACHINE_ARN`:
    - **Value:** Paste ARN của State Machine vừa tạo
 5. Click **"Save"**
+
+![image](/images/Image_workshop/StepFunc/7-enviroment-var.png)
 
 **Checkpoint:** State Machine đã được tạo và linked với Lambda 1

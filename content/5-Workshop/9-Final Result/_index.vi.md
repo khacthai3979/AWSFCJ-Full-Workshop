@@ -1,12 +1,12 @@
 ---
 title : "Test hệ thống End-to-end"
 date : "2025-10-10"
-weight : 2
+weight : 9
 chapter : false
-pre : " <b> 9. </b> "
+pre : " <b> 5.9 </b> "
 ---
 
-## Bước 6: Test Hệ thống End-to-En
+## Bước 6: Test Hệ thống End-to-End
 
 ### 6.1 Chuẩn bị Video Test
 
@@ -17,7 +17,7 @@ pre : " <b> 9. </b> "
 - Kích thước: < 100 MB
 
 **Download video test miễn phí:**
-- Pexels.com → Search "people talking"
+- Pexels.com → Search "people walking"
 - Pixabay.com → Search "interview"
 - Hoặc quay video từ điện thoại
 
@@ -29,6 +29,8 @@ pre : " <b> 9. </b> "
 4. Chọn video test
 5. Click **Upload**
 6. Đợi upload hoàn tất (progress bar = 100%)
+
+![iamge](/images/Image_workshop/StepFunc/testfinal-upload-s3.png)
 
 **Lưu ý:** Đợi upload hoàn tất trước khi check logs!
 
@@ -75,6 +77,8 @@ END RequestId: abc-123-def
 4. **ExecutionSucceeded**
    - Hoàn thành!
 
+![image](/images/Image_workshop/StepFunc/testfinale-checking-stepfunc.png) 
+
 **Thời gian tổng:** 2-7 phút cho video 30 giây
 
 #### 6.3.3 Check Lambda 4 (Blur Faces) - Chi tiết
@@ -106,3 +110,5 @@ END RequestId: abc-123-def
 - Tất cả khuôn mặt trong video bị làm mờ
 - Blur style: Pixelation (ô vuông)
 - Blur theo chuyển động của khuôn mặt
+
+![image](/images/Image_workshop/StepFunc/testfinal-dowload-result-s3.png)

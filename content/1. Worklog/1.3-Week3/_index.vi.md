@@ -1,7 +1,7 @@
 ---
 title: "WEEK 3 WORKLOG"
-date: "2025-11-10"
-weight: 1
+date: "2025-11-24"
+weight: 3
 chapter: false
 pre: " <b> 1.3 </b> "
 ---
@@ -10,10 +10,11 @@ pre: " <b> 1.3 </b> "
 
 ### **Week 3 Objectives**
 
-* Tìm hiểu về quy trình và các bước cơ bản để chuẩn bị cho một buổi Workshop kỹ thuật.
-* Tìm hiểu về quy trình quản lí truy cập dịch vụ EC2 bằng Tag thông qua AIM và quản lí tài nguyên theo nhóm bằng Tag và Resouce Groups
-* Nắm vững và khởi tạo hạ tầng dưới dạng Code với AWS CloudFormation
-* Nắm vững và thực hành các phương pháp quản lý tài nguyên AWS bằng cách sử dụng **Tags** và **Resource Groups**.
+* Thực hành triển khai và quản lý cơ sở dữ liệu trên AWS với Amazon Relational Database Service (Amazon RDS).
+* Củng cố kiến thức mạng thông qua khóa học CCNA cơ bản.
+* Hiểu và thực hành cơ chế tự động mở rộng quy mô ứng dụng với Amazon EC2 Auto Scaling.
+* Làm quen với tính năng giám sát tài nguyên và ứng dụng bằng Amazon CloudWatch.
+* Chuẩn bị cho giai đoạn tiếp theo bằng việc học tập và trao đổi trực tiếp trên trường.
 
 ---
 
@@ -21,19 +22,61 @@ pre: " <b> 1.3 </b> "
 
 | Day | Task | Start Date | Completion Date | Reference/Material |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 (Thứ Hai) | **Triển khai AWS Storage Gateway**: Chuẩn bị môi trường (S3 Bucket, EC2) và tiến hành cài đặt, kích hoạt (activate) Storage Gateway. | 22/09/2025 | 22/09/2025 | |
-| 2 (Thứ Ba) | **Lab 26 – AWS WAF**: Triển khai ứng dụng web trên S3 và cấu hình AWS WAF với Web ACLs, sử dụng AWS Managed Rules để bảo vệ. | 23/09/2025 | 23/09/2025 | |
-| 3 (Thứ Tư) | **Lab 27 – Manage Resources**: Thực hành tạo, sửa, xóa Tags trên EC2 instance. Sử dụng Tag Editor và Resource Groups để quản lý tài nguyên. | 24/09/2025 | 24/09/2025 | |
-| 4 (Thứ Năm) | **Tìm hiểu quy trình Workshop**: Dành thời gian xem và tìm hiểu các hướng dẫn, các bước cơ bản để thực hiện một buổi workshop. | 25/09/2025 | 25/09/2025 | |
+| 1 (Thứ Hai) | **Thực hành lab Amazon RDS**: Tạo RDS instance, cấu hình VPC, subnet group, security group, kết nối database từ EC2 và làm quen với các tính năng cơ bản | 22/09/2025 | 22/09/2025 | AWS RDS Docs |
+| 2 (Thứ Ba) | **Tiếp tục lab RDS & học CCNA cơ bản**: Tối ưu cấu hình RDS, thực hành backup/restore, tiếp tục học khái niệm IP Subnet, Routing | 23/09/2025 | 23/09/2025 | AWS RDS Docs, CCNA Course |
+| 3 (Thứ Tư) | **Thực hành EC2 Auto Scaling**: Tạo Auto Scaling Group (ASG), cấu hình Launch Template, thiết lập scaling policies theo CPU Utilization | 24/09/2025 | 24/09/2025 | AWS Auto Scaling Docs |
+| 4 (Thứ Năm) | **Tạo bảng theo dõi hệ thống với Amazon CloudWatch**: Tạo Dashboard theo dõi CPU, Network, Disk, thiết lập Alarms cảnh báo hệ thống | 25/09/2025 | 25/09/2025 | AWS CloudWatch Docs |
+| 5 (Thứ Sáu) | **Đi lên trường học tập**: Lên trường học tập | 26/09/2025 | 26/09/2025 | Trường/mentor |
 
 ---
 
 ### **Week 3 Achievements**
 
-* Triển khai và kích hoạt thành công **AWS Storage Gateway** trên EC2, hiểu rõ vai trò của nó như một cầu nối lưu trữ hybrid cloud (kết nối on-premises với S3).
-* Triển khai thành công một ứng dụng web và bảo vệ nó bằng **AWS WAF**.
-* Nắm vững cách cấu hình **Web ACLs** và áp dụng các bộ quy tắc quản lý sẵn (AWS Managed Rules) để chống lại các mối đe dọa web phổ biến (như OWASP Top 10).
-* Nắm vững các thao tác tạo, sửa, xóa **Tags** trên tài nguyên AWS (EC2) để định danh và tổ chức.
-* Sử dụng thành thạo **Tag Editor** và **Resource Groups** để nhóm và quản lý các tài nguyên liên quan một cách logic.
-* Nắm được quy trình và các bước cơ bản để chuẩn bị và tổ chức một buổi workshop kỹ thuật.
-* Tiếp tục củng cố kỹ năng xử lý sự cố, đặc biệt là các lỗi liên quan đến **Security Group** (ví dụ: mở port 443 outbound cho Storage Gateway) và làm quen với các công cụ quản lý của AWS.
+Trong tuần thứ ba, các nhiệm vụ thực hành tập trung vào việc triển khai database, auto scaling và giám sát hệ thống đã được hoàn thành. Kết quả đạt được bao gồm:
+
+#### 1. Thực hành triển khai cơ sở dữ liệu với Amazon RDS
+- Tạo thành công RDS Instance (PostgreSQL/MySQL)
+- Cấu hình RDS Subnet Group và Security Group
+- Kết nối RDS từ EC2 Instance và Cloud9
+- Thực hành backup database và restore từ snapshot
+- Tìm hiểu các tính năng chính của RDS:
+  - Multi-AZ Deployment
+  - Automated Backups
+  - Performance Insights
+  - Parameter Group
+
+#### 2. Củng cố kiến thức CCNA cơ bản
+- Tiếp tục học về:
+  - Subnetting và VLSM
+  - Static Routing và Dynamic Routing (OSPF/RIP)
+  - LAN vs WAN
+  - Routing Table và cách hoạt động
+- Hiểu rõ hơn vai trò của networking trong cloud
+
+#### 3. Tự động mở rộng ứng dụng với Amazon EC2 Auto Scaling
+- Tạo Auto Scaling Group (ASG) với Launch Template
+- Cấu hình Scaling Policy dựa theo CPU Utilization
+- Thực hành scale-out và scale-in tự động
+- Hiểu luồng scaling:
+  - Trigger → Launch new instance → Register with Load Balancer
+
+#### 4. Theo dõi hệ thống với Amazon CloudWatch
+- Tạo Dashboard theo dõi:
+  - CPU Utilization
+  - Network In/Out
+  - Memory sử dụng (trên Agent)
+- Thiết lập CloudWatch Alarms khi CPU vượt ngưỡng
+- Hiểu cơ chế log:
+  - CloudWatch Logs
+  - Metric Filters
+
+#### 5. Học tập và trao đổi trực tiếp trên trường
+- Thảo luận các kiến thức liên quan với mentor
+- Nhận góp ý về cách học và roadmap
+- Trao đổi kinh nghiệm thực hành với bạn học
+- Tập trung củng cố kiến thức networking và cloud
+
+---
+
+**Tổng kết:**  
+Tuần thứ ba giúp hiểu sâu hơn về **database trên AWS**, thực hành **tự động mở rộng EC2**, nắm được cách **giám sát hệ thống với CloudWatch**, đồng thời củng cố kiến thức **CCNA**. Đây là nền tảng quan trọng để tiếp tục triển khai hệ thống hoàn chỉnh trong các tuần sau.

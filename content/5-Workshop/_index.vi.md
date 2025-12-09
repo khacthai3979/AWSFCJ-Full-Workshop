@@ -1,232 +1,93 @@
 ---
-title : "Xóa các dịch vụ"
-date :  "2025-10-10"
-weight : 2
+title : "Workshop"
+date :  "2025-10-10" 
+weight : 5 
 chapter : false
-pre: " <b> 10. </b> "
+pre: " <b> 5. </b> "
 ---
-### Bước 1: Xóa S3 Objects
+# IMPLEMENTING ADVANCED FEATURES OF AWS APPLICATION LOAD BALANCER
 
-**Phải xóa objects trước khi xóa buckets!**
+### Overall
+This hands-on lab provides a comprehensive, practical guide to implementing and managing the advanced capabilities of the AWS Application Load Balancer (ALB). Participants will move beyond basic load balancing to configure a highly available, performant, and intelligent application delivery solution. By working through real-world scenarios, you will learn to leverage features that are critical for modern, scalable, and resilient applications, including complex routing, protocol support, and operational best practices.
 
-#### 1.1 Xóa Objects trong Input Bucket
+![ConnectPrivate](/images/arc.jpeg) 
+### Workflow### Phase 1: Foundational Networking (VPC)
+This phase established the isolated network environment for the application.
 
-    1. S3 Console → Buckets
-    2. Click vào `face-blur-input-bucket-input` (hoặc tên bucket của bạn)
-    3. Tab **Objects**
-    4. **Select all** (checkbox ở đầu danh sách)
-    5. Click **Delete**
-    6. Confirm:
-    - Type: `permanently delete`
-    - Click **Delete objects**
+*   **Create VPC:** A VPC was created with the CIDR block `10.0.0.0/16`.
 
-**Verify:** "Successfully deleted X objects"
+*   **Create Subnets:** Four subnets were created across two Availability Zones for high availability:
+    *   `public-subnet-1a` (`10.0.1.0/24`)
+    *   `public-subnet-1b` (`10.0.2.0/24`)
+    *   `private-subnet-1a` (`10.0.3.0/24`)
+    *   `private-subnet-1b` (`10.0.4.0/24`)
 
-#### 1.2 Xóa Objects trong Output Bucket
+*   **Configure Gateways:** An Internet Gateway was attached to the VPC for public internet access, and a NAT Gateway was placed in a public subnet to allow private instances to access the internet.
 
-Lặp lại các bước trên với `face-blur-output-bucket-output`
+*   **Set Up Route Tables:** A public route table was configured to direct traffic through the Internet Gateway, and a private route table was set up to route outbound traffic from private subnets through the NAT Gateway.
 
-**Checkpoint:** Cả 2 buckets đều empty (0 objects)
+### Phase 2: Security & Configuration
+This phase focused on securing the environment and preparing for deployments.
 
----
+*   **Create Security Groups:** Layered security groups were created to control traffic flow:
+    *   `alb-sg`: Allows public HTTP (80) and HTTPS (443) traffic.
+    *   `web-sg`: Allows traffic only from `alb-sg` on port 80.
+    *   `api-sg`: Allows traffic only from `alb-sg` on port 8080.
+    *   `websocket-sg`: Allows traffic only from `alb-sg` on port 3000.
 
-### Bước 2: Xóa S3 Event Notifications
+*   **Request SSL Certificate:** An SSL certificate for the domain was requested and validated using AWS Certificate Manager (ACM) to enable HTTPS.
 
-#### 2.1 Xóa Event Notifications
+*   **Create IAM Role:** An IAM role (`ec2-alb-role`) was created for EC2 instances, granting them permissions to interact with CloudWatch, S3, and SNS without storing credentials.
 
-   1. S3 Console → Input bucket
-   2. Tab **Properties**
-   3. Scroll xuống **Event notifications**
-   4. Bạn sẽ thấy 2 notifications:
-      - Event notification cho `.mp4` files
-      - Event notification cho `.mov` files
-   5. Select từng notification → Click **Delete**
-   6. Confirm deletion
+*   **Create S3 Bucket:** An S3 bucket was created to store the ALB's access logs for auditing and analysis.
 
-**Checkpoint:** Event notifications = 0
+### Phase 3: Application & Compute Layer
+This phase deployed the application's core components.
 
+*   **Create Target Groups:** Three distinct target groups were created to route traffic to the different microservices, each with a specific health check path:
+    *   `web-tg` (Port 80, `/`)
+    *   `api-tg` (Port 8080, `/api/health`)
+    *   `websocket-tg` (Port 3000, `/ws/health`)
 
-### Bước 3: Xóa Lambda Functions
+*   **Create Application Load Balancer (ALB):** An internet-facing ALB was created in the public subnets, configured with the `alb-sg` security group and the ACM certificate. Listeners were set up to redirect HTTP to HTTPS and to handle content-based routing.
 
-#### 3.1 Xóa Lambda 4 (Blur Faces)
+*   **Enable Advanced ALB Features:**
+    *   **Sticky Sessions:** Enabled on `web-tg` for session affinity.
+    *   **Access Logs:** Configured to send logs to the S3 bucket.
 
-    1. Lambda Console → Functions
-    2. Select `BlurFacesFunction`
-    3. Actions → **Delete**
-    4. Confirm:
-    - Type: `delete`
-    - Click **Delete**
+*   **Create Launch Templates:** Three separate launch templates were created, each with a specific user data script to bootstrap the application:
+    *   `web-service-template` (NGINX)
+    *   `api-service-template` (Node.js/Express)
+    *   `websocket-service-template` (Node.js/WebSocket)
 
-#### 3.2 Xóa Lambda 3 (Get Timestamps)
+*   **Create Auto Scaling Groups:** Three Auto Scaling Groups were launched in the private subnets, each linked to its corresponding Launch Template and Target Group, configured to maintain a desired count of 2 instances and scale based on CPU utilization.
 
-    Lặp lại với `GetTimestampsFunction`
+### Phase 4: Monitoring, DNS & Cost Management
+This final phase made the application observable, publicly accessible, and financially monitored.
 
-#### 3.3 Xóa Lambda 2 (Check Status)
+*   **Configure Monitoring:**
+    *   An SNS Topic (`alb-alerts`) was created for notifications.
+    *   CloudWatch Alarms were set for key metrics like `RequestCountPerTarget` and `CPUUtilization` to send alerts to the SNS topic.
+    *   A CloudWatch Dashboard was built to visualize the health of the ALB, Target Groups, and EC2 instances in real-time.
 
-Lặp lại với `CheckStatusFunction`
+*   **Configure DNS:** Amazon Route 53 was used to create an A (Alias) record pointing the root domain to the ALB, CNAME record pointing to subdomain, making the application accessible via a friendly URL.
 
-#### 3.4 Xóa Lambda 1 (Start Face Detect)
+*   **Set Up Cost Monitoring:** AWS Cost Explorer was enabled, and an AWS Budget was created to monitor monthly spending and send alerts if costs approach the defined limit.
 
-Lặp lại với `StartFaceDetectFunction`
-
-**Checkpoint:** 0 Lambda functions còn lại
-
----
-
-### Bước 4: Xóa Step Functions State Machine
-
-1. Step Functions Console → State machines
-2. Select `FaceBlurStateMachine`
-3. Click **Delete**
-4. Confirm:
-   - Type: `delete`
-   - Click **Delete state machine**
-
-**Thời gian:** ~30 giây
-
-**Checkpoint:** State machine đã bị xóa
-
----
-
-### Bước 5: Xóa ECR Repository và Docker Images
-
-#### 5.1 Xóa Docker Images trong ECR
-
-1. ECR Console → Repositories
-2. Click vào `blur-faces-lambda`
-3. Tab **Images**
-4. Select all images (checkbox)
-5. Click **Delete**
-6. Confirm:
-   - Type: `delete`
-   - Click **Delete**
-
-**Verify:** "Successfully deleted X images"
-
-#### 5.2 Xóa ECR Repository
-
-1. ECR Console → Repositories
-2. Select `blur-faces-lambda`
-3. Click **Delete**
-4. Confirm:
-   - Type: `delete`
-   - Click **Delete**
-
-**Checkpoint:** ECR repository đã bị xóa
-
----
-
-### Bước 6: Xóa S3 Buckets
-
-**⚠️ Buckets phải empty trước khi xóa!**
-
-#### 6.1 Xóa Input Bucket
-
-1. S3 Console → Buckets
-2. Select `face-blur-input-bucket-input`
-3. Click **Delete**
-4. Confirm:
-   - Type bucket name: `face-blur-input-bucket-input`
-   - Click **Delete bucket**
-
-#### 6.2 Xóa Output Bucket
-
-Lặp lại với `face-blur-output-bucket-output`
-
-**Checkpoint:** 0 buckets còn lại (hoặc chỉ còn buckets khác)
-
----
-
-### Bước 7: Xóa IAM Roles
-
-**Thứ tự:** Xóa theo thứ tự bất kỳ (không có dependencies)
-
-#### 7.1 Xóa Lambda Roles
-
-1. IAM Console → Roles
-2. Search: `Lambda`
-3. Select các roles sau (có thể select nhiều):
-   - `LambdaStartFaceDetectRole`
-   - `LambdaCheckStatusRole`
-   - `LambdaGetTimestampsRole`
-   - `LambdaBlurFacesRole`
-4. Click **Delete**
-5. Confirm:
-   - Type role name
-   - Click **Delete**
-
-**Lặp lại cho từng role nếu không thể xóa nhiều cùng lúc.**
-
-#### 7.2 Xóa Step Functions Role
-
-1. IAM Console → Roles
-2. Search: `StepFunctions`
-3. Select `StepFunctionsExecutionRole`
-4. Click **Delete**
-5. Confirm deletion
-
-**Checkpoint:** 5 IAM roles đã bị xóa
-
----
-
-### Bước 8: Xóa CloudWatch Log Groups (Optional)
-
-**Lưu ý:** Log groups sẽ tự động bị xóa sau 30 ngày nếu không có logs mới. Bạn có thể giữ lại để review sau.
-
-#### 8.1 Xóa Lambda Log Groups
-
-1. CloudWatch Console → Log groups
-2. Search: `/aws/lambda/`
-3. Select các log groups:
-   - `/aws/lambda/StartFaceDetectFunction`
-   - `/aws/lambda/CheckStatusFunction`
-   - `/aws/lambda/GetTimestampsFunction`
-   - `/aws/lambda/BlurFacesFunction`
-4. Actions → **Delete log group(s)**
-5. Confirm deletion
-
-#### 8.2 Xóa Step Functions Log Groups (Nếu có)
-
-Search: `/aws/states/` và xóa tương tự
-
-**Checkpoint:** Log groups đã bị xóa
-
----
-
-### Bước 9: Xóa Docker Images Local (Optional)
-
-**Để giải phóng disk space trên máy local:**
-
-#### 9.1 List Docker Images
-
-```powershell
-# Windows/macOS/Linux
-docker images | grep blur-faces-lambda
-```
-
-Bạn sẽ thấy:
-```
-blur-faces-lambda                                                latest    abc123    1.2GB
-208613876063.dkr.ecr.ap-southeast-1.amazonaws.com/blur-faces-lambda   latest    abc123    1.2GB
-```
-
-#### 9.2 Xóa Images
-
-```powershell
-# Xóa local image
-docker rmi blur-faces-lambda:latest
-
-# Xóa ECR tagged image
-docker rmi 123456789.dkr.ecr.ap-southeast-1.amazonaws.com/blur-faces-lambda:latest
-```
-
-**Hoặc xóa tất cả unused images:**
-```powershell
-docker image prune -a
-```
-
-**Verify:**
-```powershell
-docker images | grep blur-faces-lambda
-# Không có kết quả
-```
+### Content
+ 1. [Introduction ](1-Introduce)
+ 2. [Preparation](2-Preparation/)
+ 3. [Network Infrastructure](3-VPCSetup)
+ 4. [Request SSL Certificate](4-ACM)
+ 5. [Initalize S3 Bucket](5-S3Bucket)
+ 6. [Create Target Groups](6-TargetGroup)
+ 7. [Initalize Application Load Balancer](7-ALB)
+ 8. [Initalize EC2 Launch Template](8-EC2LaunchTemplates)
+ 9. [ Initalize Auto Scaling Group](9-ASG)
+ 10. [Create SNS topic](10-SNS)
+ 11. [Initialize CloudWatch Alarms](11-CW)
+ 12. [ Initialize Cost Monitoring](12-Cost)
+ 13. [Config DNS records](13-ConfigDNS)
+ 14. [Check result](14-CheckResult)
+ 15. [ Performance Testing](15-PerformanceTesting)
+ 16. [ Clean Resources](16-CleanResources)
