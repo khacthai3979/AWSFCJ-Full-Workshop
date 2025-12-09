@@ -23,7 +23,7 @@ chapter: false
 
 &emsp; **Thời gian thực tập:** Từ ngày 16/09/2025 đến ngày 24/12/2025
 
-![Your profile photo]()
+![Your profile photo](/images/hinh_vt.jpg)
 
 ### Nội dung báo cáo
 

@@ -372,7 +372,7 @@ chat_message (RDS)
 **Objective**: Build user interface (UI) with Vue.js and build backend API with Django
 
 **Tasks**:
-- Build authentication pages (Landing Page, Sign Up, Sign In, Verify Email, Forgot Password)
+- Build web pages (Landing Page, Sign Up, Sign In, Verify Email, Forgot Password)
 - Create personal information management interface (Profile Management)
 - Build Chat interface
 - Handle error states in interface
