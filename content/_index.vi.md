@@ -17,13 +17,13 @@ chapter: false
 
 &emsp; **Ngành:** Trí Tuệ Nhân Tạo
 
-&emsp; **Lớp:** AWS &emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Vietnam
+&emsp; **Lớp:** AWS092025 &emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Vietnam
 
 &emsp; **Vị trí thực tập:** FCJ Cloud Intern
 
 &emsp; **Thời gian thực tập:** Từ ngày 16/09/2025 đến ngày 24/12/2025
 
-![Your profile photo](/images/hinh_vt.jpg)
+![Your profile photo](/images/IMG-8799.jpg)
 
 ### Nội dung báo cáo
 

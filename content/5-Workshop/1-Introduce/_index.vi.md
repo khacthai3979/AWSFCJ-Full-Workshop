@@ -1,39 +1,23 @@
 ---
 title : "Giới thiệu "
 date : "2025-10-10"
-weight : 1
+weight : 2
 chapter : false
-pre : " <b> 5.1 </b> "
+pre : " <b> 1. </b> "
 ---
-Trong workshop này, chúng ta sẽ xây dựng một dự án tự động làm mờ khuôn mặt trong video bằng cách kết hợp Amazon Rekognition và OpenCV. Đây là một ứng dụng thực tế trong lĩnh vực Computer Vision, đặc biệt quan trọng khi các doanh nghiệp ngày càng chú trọng đến bảo vệ quyền riêng tư của người dùng.
+Application Load Balancer (ALB) không chỉ đơn thuần là một bộ phân phối lưu lượng truy cập. Nó đóng vai trò như một cổng vào thông minh và an toàn cho các ứng dụng hiện đại, giữ một vai trò quan trọng trong việc kiến trúc hệ thống có khả năng mở rộng, phục hồi và hiệu suất cao. Mặc dù việc thiết lập một bộ cân bằng tải cơ bản khá đơn giản, để khai thác hết tiềm năng của nó đòi hỏi sự hiểu biết sâu hơn về các khả năng nâng cao.
 
-Bằng cách sử dụng AWS Step Functions để điều phối quy trình và Lambda để xử lý từng bước, chúng ta sẽ gọi dịch vụ Amazon Rekognition Video nhằm phát hiện khuôn mặt trong video, sau đó sử dụng thư viện OpenCV để làm mờ các khuôn mặt đó.
+Bài thực hành này được thiết kế để lấp đầy khoảng trống đó. Chúng ta sẽ vượt ra khỏi những kiến thức cơ bản và đi sâu vào các tính năng mạnh mẽ cho phép bạn xây dựng môi trường ứng dụng tinh vi, hiệu quả và vận hành xuất sắc. Bạn sẽ học cách định tuyến lưu lượng truy cập với độ chính xác cao, hỗ trợ các giao thức truyền thông hiện đại và tinh chỉnh cấu hình của mình để đạt được tình trạng và hiệu suất tối ưu.
 
-Workshop giúp sinh viên và mentor hiểu quy trình xây dựng một hệ thống xử lý video theo hướng serverless, đồng thời khám phá cách tích hợp dịch vụ AI/ML của AWS vào ứng dụng thực tế.
+Khi kết thúc bài thực hành này, bạn sẽ không chỉ hiểu các tính năng này về mặt lý thuyết mà còn đã triển khai chúng một cách thực tế trong một môi trường thực tế.
 
 ### Mục tiêu học tập
 
-Sau khi hoàn thành workshop này, người học sẽ:
+Sau khi hoàn thành bài thực hành này, bạn sẽ có thể:
 
-- Hiểu quy trình phát hiện khuôn mặt trong video bằng Amazon Rekognition.
-- Nắm được cách sử dụng AWS Step Functions để điều phối nhiều hàm Lambda.
-- Biết cách tích hợp Amazon Rekognition Video với OpenCV để làm mờ khuôn mặt
-- Làm quen với kiến trúc serverless và pipeline xử lý video tự động.
-- Thực hành triển khai một giải pháp AI/ML trên AWS.
-- Hiểu tầm quan trọng của ẩn danh dữ liệu hình ảnh và bảo vệ quyền riêng tư.
-
-### Tài liệu Tham khảo
-
-**AWS Documentation:**
-- [Lambda Container Images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html)
-- [Amazon ECR User Guide](https://docs.aws.amazon.com/ecr/)
-- [Rekognition Video Analysis](https://docs.aws.amazon.com/rekognition/latest/dg/video.html)
-
-**Libraries:**
-- [OpenCV Documentation](https://docs.opencv.org/)
-- [MoviePy Documentation](https://zulko.github.io/moviepy/)
-- [Boto3 Documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
-
-**Tools:**
-- [Docker Documentation](https://docs.docker.com/)
-- [AWS CLI Reference](https://docs.aws.amazon.com/cli/)
+  - Triển khai các quy tắc định tuyến dựa trên nội dung phức tạp bằng cách sử dụng host header và đường dẫn URL để hướng lưu lượng truy cập đến các microservice khác nhau.
+  - Kích hoạt và kiểm tra các giao thức hiện đại như HTTP/2 và WebSockets để nâng cao hiệu suất ứng dụng và cho phép giao tiếp thời gian thực.
+  - Cấu hình sticky sessions (phiên cố định) để xử lý chính xác các yêu cầu của ứng dụng có trạng thái (stateful).
+  - Tinh chỉnh các tham số kiểm tra tình trạng (health check) để phát hiện lỗi chuyển đổi (failover) nhanh hơn và tăng khả năng phục hồi của ứng dụng.
+  - Thiết lập giám sát, ghi nhật ký và cảnh báo mạnh mẽ bằng Amazon CloudWatch để có được cái nhìn tổng quan về hoạt động của lưu lượng truy cập và tình trạng ứng dụng của bạn.
+  - Phân tích các tác động về chi phí của các cấu hình ALB khác nhau và khắc phục sự cố thường gặp một cách hiệu quả.

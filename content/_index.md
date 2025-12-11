@@ -17,13 +17,13 @@ chapter: false
 
 &emsp; **Major:** Artificial Intelligent
 
-&emsp; **Class:** AWS &emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
+&emsp; **Class:** AWS092025 &emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
 
 &emsp; **Internship Position:** FCJ Cloud Intern
 
 &emsp; **Internship Duration:** From September 16, 2025 to December 16, 2025
 
-![Your profile photo](/images/hinh_vt.jpg)
+![Your profile photo](/images/IMG-8799.jpg)
 
 
 
