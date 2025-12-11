@@ -735,4 +735,4 @@ Nền tảng dinh dưỡng AI: Kiến thức thực tế về CloudFront (phân 
 - Gợi ý cá nhân hóa theo hồ sơ dinh dưỡng
 - Giao diện đơn giản, dễ sử dụng, dễ tiếp cận
 
-
+[Linkdocs Proposal](https://docs.google.com/document/d/1fFBFmsCcT5wx34no2UnsbVISUmzIl58I/edit?usp=sharing&ouid=112837625393191937743&rtpof=true&sd=true)
