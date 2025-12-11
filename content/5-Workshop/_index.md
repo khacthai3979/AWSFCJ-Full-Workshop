@@ -72,7 +72,25 @@ This final phase made the application observable, publicly accessible, and finan
 
 *   **Configure DNS:** Amazon Route 53 was used to create an A (Alias) record pointing the root domain to the ALB, CNAME record pointing to subdomain, making the application accessible via a friendly URL.
 
+<<<<<<< HEAD
 *   **Set Up Cost Monitoring:** AWS Cost Explorer was enabled, and an AWS Budget was created to monitor monthly spending and send alerts if costs approach the defined limit.
+=======
+### 3. Video Blurring
+- The final Lambda function uses OpenCV to blur the detected faces:
+  - Pull the Docker image with OpenCV support from **Amazon ECR**
+  - Read the input video from **S3**
+  - Apply blur to faces based on `timestamp` and `bounding box`
+  - Upload the processed video to the **output S3 bucket**
+  - Remove temporary files inside the Lambda environment
+
+---
+
+## Output
+
+- The blurred video is stored in the **output S3 bucket** and is ready to be shared with downstream systems or end users..
+
+---
+>>>>>>> 9c2ab82f4c3f4f6a887e8dd1d404f8f6a50aa083
 
 ### Content
  1. [Introduction ](1-Introduce)

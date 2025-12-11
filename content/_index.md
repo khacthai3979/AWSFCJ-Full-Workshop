@@ -23,7 +23,11 @@ chapter: false
 
 &emsp; **Internship Duration:** From September 16, 2025 to December 16, 2025
 
+<<<<<<< HEAD
 ![Your profile photo](/images/IMG-8799.jpg)
+=======
+![Your profile photo](/images/IMG_8799.JPG)
+>>>>>>> 9c2ab82f4c3f4f6a887e8dd1d404f8f6a50aa083
 
 
 

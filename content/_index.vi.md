@@ -23,7 +23,11 @@ chapter: false
 
 &emsp; **Thời gian thực tập:** Từ ngày 16/09/2025 đến ngày 24/12/2025
 
+<<<<<<< HEAD
 ![Your profile photo](/images/IMG-8799.jpg)
+=======
+![Your profile photo](/images/IMG_8799.JPG)
+>>>>>>> 9c2ab82f4c3f4f6a887e8dd1d404f8f6a50aa083
 
 ### Nội dung báo cáo
 

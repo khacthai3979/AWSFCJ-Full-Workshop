@@ -5,7 +5,7 @@ weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-
+![image architech](/images/Proposal/Containerized-and-Scalable-Web-Application.drawio.png)
 ## 1. TÓM TẮT ĐIỀU HÀNH
 
 ### 1.1 Tổng quan dự án
@@ -735,4 +735,4 @@ Nền tảng dinh dưỡng AI: Kiến thức thực tế về CloudFront (phân 
 - Gợi ý cá nhân hóa theo hồ sơ dinh dưỡng
 - Giao diện đơn giản, dễ sử dụng, dễ tiếp cận
 
-
+[Linkdocs Proposal](https://docs.google.com/document/d/1RizCyvUpP3ky2ArXRSVLJz6_Un53U6i0v0AGytwrcvA/edit?tab=t.0)

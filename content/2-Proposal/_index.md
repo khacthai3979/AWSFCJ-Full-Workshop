@@ -5,7 +5,7 @@ weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-
+![image architech](/images/Proposal/Containerized-and-Scalable-Web-Application.drawio.png)
 ## 1. EXECUTIVE SUMMARY
 
 ### 1.1 Project Overview
@@ -732,3 +732,5 @@ AI Nutrition Platform: Practical knowledge of CloudFront (distributing Vue.js fr
 - AI-powered nutrition consultation
 - Personalized recommendations based on nutrition profile
 - Simple, easy-to-use, accessible interface
+
+[Linkdocs Proposal](https://docs.google.com/document/d/1RizCyvUpP3ky2ArXRSVLJz6_Un53U6i0v0AGytwrcvA/edit?usp=sharing)
