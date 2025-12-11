@@ -17,7 +17,7 @@ chapter: false
 
 &emsp; **Major:** Artificial Intelligent
 
-&emsp; **Class:** AWS &emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
+&emsp; **Class:** AWS092025 &emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
 
 &emsp; **Internship Position:** FCJ Cloud Intern
 
