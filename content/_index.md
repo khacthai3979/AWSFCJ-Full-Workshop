@@ -23,7 +23,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From September 16, 2025 to December 16, 2025
 
-![Your profile photo](/images/hinh_vt.jpg)
+![Your profile photo](/images/IMG_8799.JPG)
 
 
 
