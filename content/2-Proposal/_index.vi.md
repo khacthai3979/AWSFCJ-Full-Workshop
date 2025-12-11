@@ -5,7 +5,7 @@ weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-
+![image architech](/images/Proposal/Containerized-and-Scalable-Web-Application.drawio.png)
 ## 1. TÓM TẮT ĐIỀU HÀNH
 
 ### 1.1 Tổng quan dự án
