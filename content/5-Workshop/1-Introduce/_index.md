@@ -18,7 +18,7 @@ After completing this workshop, participants will:
 - Understand the process of detecting faces in videos using Amazon Rekognition.
 - Learn how to use AWS Step Functions to orchestrate multiple Lambda functions.
 - Know how to integrate Amazon Rekognition Video with OpenCV to blur faces.
-- Become familiar with serverless architecture and automated video processing pipelines.
+- Become familiar with serverless architecture and automated video processing pipelines..
 - Practice deploying an AI/ML solution on AWS.
 - Understand the importance of anonymizing image data and protecting privacy.
 
