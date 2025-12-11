@@ -733,4 +733,4 @@ AI Nutrition Platform: Practical knowledge of CloudFront (distributing Vue.js fr
 - Personalized recommendations based on nutrition profile
 - Simple, easy-to-use, accessible interface
 
-[Linkdocs Proposal](https://docs.google.com/document/d/1fFBFmsCcT5wx34no2UnsbVISUmzIl58I/edit?usp=sharing&ouid=112837625393191937743&rtpof=true&sd=true)
+[Linkdocs Proposal](https://docs.google.com/document/d/1RizCyvUpP3ky2ArXRSVLJz6_Un53U6i0v0AGytwrcvA/edit?usp=sharing)
